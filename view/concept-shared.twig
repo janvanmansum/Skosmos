@@ -145,13 +145,14 @@
         {% endif %}
       {% endfor %}
       {% set foreignLabels = concept.foreignLabels %}
-      NOTAATIO
+      <!-- NOTAATIO -->
       {% if foreignLabels %}
       <div class="row property prop-other-languages">
         <div class="property-label"><h3 class="versal property-click" title="{% trans "foreign prefLabel help" %}" >{{ 'foreign prefLabels'|trans|upper }}</h3></div>
         <div class="property-value-column">
           <div class="property-value-wrapper">
-            <ul> {{ concept.notation }}
+            <ul>
+            <!-- {{ concept.notation }} -->
               {% for language,labels in foreignLabels %}
               {% for value in labels.prefLabel|default([])|merge(labels.altLabel|default([])) %}
               <li class="row other-languages{% if loop.first %} first-of-language{% endif %}">
