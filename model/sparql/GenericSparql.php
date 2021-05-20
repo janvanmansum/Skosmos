@@ -438,7 +438,7 @@ CONSTRUCT {
      UNION
      { ?o rdfs:label ?ol . }
      UNION
-     { ?o rdf:value ?ov . 
+     { ?o rdf:value ?ov .
        OPTIONAL { ?o ?oprop ?oval . }
      }
      UNION
@@ -645,7 +645,7 @@ WHERE {
    { ?cs dc:title ?title }
    FILTER(langMatches(lang(?title), '$lang'))
  }
-} 
+}
 ORDER BY ?cs
 EOQ;
         return $query;
@@ -941,7 +941,7 @@ EOF;
    SELECT DISTINCT ?s ?label ?notation $hitvar
    WHERE {
     $graphClause {
-     { 
+     {
      $valuesProp
      VALUES (?prop ?pri ?langParam) { (skos:prefLabel 1 $langClause) (skos:altLabel 3 $langClause) (skos:notation 5 '') (skos:hiddenLabel 7 $langClause)}
      $textcond
@@ -958,7 +958,6 @@ EOF;
    }
    $hitgroup
 EOQ;
-
         return $query;
     }
     /**
@@ -1049,7 +1048,7 @@ EOQ;
           $labelpriority = '';
         }
         $query = <<<EOQ
-SELECT DISTINCT ?s ?label ?plabel ?alabel ?hlabel ?graph ?notation (GROUP_CONCAT(DISTINCT STR(?type);separator=' ') as ?types) $extravars 
+SELECT DISTINCT ?s ?label ?plabel ?alabel ?hlabel ?graph ?notation (GROUP_CONCAT(DISTINCT STR(?type);separator=' ') as ?types) $extravars
 $fcl
 WHERE {
  $gcl {
@@ -1058,7 +1057,7 @@ WHERE {
   }
   $labelpriority
   $formattedtype
-  { $pgcond 
+  { $pgcond
    ?s a ?type .
    $extrafields $schemecond
   }
@@ -1545,7 +1544,6 @@ EOQ;
      */
     private function generateNotationQuery($uri) {
         $fcl = $this->generateFromClause();
-
         $query = <<<EOQ
 SELECT * $fcl
 WHERE {
@@ -1905,7 +1903,6 @@ EOQ;
                 $ret[] = $top;
             }
         }
-
         return $ret;
     }
 
@@ -1922,7 +1919,7 @@ EOQ;
         $propertyClause = implode('|', $props);
         $query = <<<EOQ
 SELECT ?broad ?parent ?children ?grandchildren
-(SAMPLE(?lab) as ?label) (SAMPLE(?childlab) as ?childlabel) (GROUP_CONCAT(?topcs; separator=" ") as ?tops) 
+(SAMPLE(?lab) as ?label) (SAMPLE(?childlab) as ?childlabel) (GROUP_CONCAT(?topcs; separator=" ") as ?tops)
 (SAMPLE(?nota) as ?notation) (SAMPLE(?childnota) as ?childnotation) $fcl
 WHERE {
   <$uri> a skos:Concept .

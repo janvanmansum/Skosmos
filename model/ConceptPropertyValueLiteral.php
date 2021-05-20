@@ -28,8 +28,35 @@ class ConceptPropertyValueLiteral extends VocabularyDataObject
 
     public function getLang()
     {
+        // *****
+        error_log("Entered to the getLang()");
+        error_log($this->getDatatype());
+        // *****
         return $this->literal->getLang();
     }
+
+// ****
+    // This method is only for testing purposes. An idea is just to print needed data ...
+    public function getDatatype()
+    {
+        error_log("Entered to erroneous area.. 1");
+        $sparql = new \EasyRdf\Sparql\Client('http://localhost:3030/skosmos/query');
+        $result = $sparql->query(
+            'SELECT ?o WHERE {'.
+            '  <http://www.yso.fi/onto/juho/dt1> rdfs:label ?o .'.
+            '}'
+        );
+        error_log("*********");
+        error_log("Yksi kerraallaan....");
+        foreach ($result as $row) {
+          error_log(var_dump($row->o)); // Käytä tätä kun haluat nähdä käsitesivulla "kaikki"
+        }
+        error_log("*****************");
+        error_log("Yksittäinen");
+        error_log($this->literal);
+        return $this->literal->getDatatype();
+    }
+// ****
 
     public function getType()
     {

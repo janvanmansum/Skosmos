@@ -85,12 +85,6 @@
         <div class="col-md-12"><div class="preflabel-spacer"></div></div>
       </div>
       {% endspaceless %}
-
-
-
-
-
-
       {% for property in concept.properties %} {# loop through ConceptProperty objects #}
         {% if property.getSubPropertyOf != 'skos:hiddenLabel' %}
         <div class="row{% if property.type == 'dc:isReplacedBy' %} replaced-by{% endif%} property prop-{{property.ID}}">
